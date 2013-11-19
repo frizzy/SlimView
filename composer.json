@@ -1,0 +1,24 @@
+{
+    "name": "frizzy/slim-view",
+    "type": "library",
+    "description": "Extends the Slim Framework View class for easy injection of any templating engine",
+    "keywords": ["templating", "extensions", "slimphp"],
+    "homepage": "http://github.com/frizzy/slim-view",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bernard van Niekerk",
+            "email": "frizzy@paperjaw.com",
+            "homepage": "https://paperjaw.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "slim/slim": ">=2.3.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "Frizzy\\Slim\\View": "."
+        }
+    }
+}
