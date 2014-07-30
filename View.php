@@ -54,11 +54,11 @@ class View extends BaseView
      * @var array
      */
     private $renderEngines = array();
-    
+
     /**
      * Set render engine
      *
-     * @param mixed $engine Engine
+     * @param mixed   $engine           Engine
      * @param Closure $renderCallback   Render callback function
      * @param Closure $resolverCallback Resolver callback function
      *
@@ -72,24 +72,25 @@ class View extends BaseView
             }
         }
         $this->renderEngines[] = array($engine, $renderCallback, $resolverCallback);
-        
+
         return true;
     }
-    
+
     /**
      * Render
      *
      * {@inheritDoc}
      */
-    public function render($template)
+    public function render($template, $data = null)
     {
+        $data = array_merge($this->all(), (array) $data);
         $fallback = true;
         foreach ($this->renderEngines as list($engine, $renderCallback, $resolverCallback)) {
             if ($resolverCallback->__invoke($template)) {
-                return $renderCallback->__invoke($engine, $template, $this->all());
+                return $renderCallback->__invoke($engine, $template, $data);
             }
         }
-        
+
         return parent::render($template);
     }
 }
